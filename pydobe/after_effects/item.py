@@ -3,7 +3,7 @@ from __future__ import annotations
 from pydobe.core import PydobeBaseObject, format_to_extend, eval_script_returning_object, create_python_object, \
     PydobeBaseCollection
 from pydobe.utils import hex_to_rgb
-from pydobe.shared.objects.file_ import File
+from pydobe.shared.file_ import File
 from pydobe.after_effects.utils import time_to_current_format, current_format_to_time
 from pydobe.after_effects.data import label_dictionary
 

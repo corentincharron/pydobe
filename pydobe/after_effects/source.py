@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from pydobe.shared.objects.file_ import File
+from pydobe.shared.file_ import File
 from pydobe.after_effects.data import alpha_dictionary, field_separation_dictionary, pulldown_dictionary
 from pydobe.core import PydobeBaseObject, format_to_extend
 from pydobe.utils import hex_to_rgb

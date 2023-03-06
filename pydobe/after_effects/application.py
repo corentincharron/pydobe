@@ -5,7 +5,7 @@ from pydobe.core import (
     format_to_extend,
 )
 from pydobe.after_effects.utils import *
-from pydobe.shared.objects.file_ import File
+from pydobe.shared.file_ import File
 from .project import Project
 
 
