@@ -2,6 +2,8 @@ import json
 import requests
 import socket
 
+from pydobe.logging_ import logger
+
 HOST = "127.0.0.1"
 PORT = 2000
 PANEL_URL = f"http://{HOST}:{PORT}"
@@ -75,8 +77,9 @@ def is_port_open():
     a_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     location = (HOST, PORT)
     result_of_check = a_socket.connect_ex(location)
-    message = f"Connection to port {PORT} could not be established. Please ensure After Effects is running."
     if result_of_check != 0:
+        message = f"Connection to port {PORT} could not be established. Please ensure After Effects is running."
+        logger.error(message)
         raise ConnectionError(message)
 
 

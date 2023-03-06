@@ -9,6 +9,7 @@ from pydobe.core import (
 )
 from pydobe.adobe_objects import File, Folder
 from pydobe.utils import hex_to_rgb
+from pydobe.logging_ import logger
 from pydobe.after_effects.data import *
 from pydobe.after_effects.ae_utils import *
 
@@ -92,9 +93,9 @@ class Project(PydobeBaseObject):
     @bits_per_channel.setter
     def bits_per_channel(self, value: int):
         if value not in [8, 16, 32]:
-            raise ValueError(
-                "Unable to set 'bits_per_channel', value must be 8, 16, or 32"
-            )
+            message = "Unable to set 'bits_per_channel', value must be 8, 16, or 32"
+            logger.error(message)
+            raise ValueError(message)
         else:
             self._eval_on_object(f"bitsPerChannel = {value}")
 
