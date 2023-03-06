@@ -20,6 +20,8 @@ class IntStringDict(UserDict):
             self.data[key] = value
         elif isinstance(key, str):
             self.data[value] = key
+        else:
+            pass
 
 
 def hex_to_rgb(hex_value):
