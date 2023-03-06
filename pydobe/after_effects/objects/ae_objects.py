@@ -150,7 +150,7 @@ class Project(PydobeBaseObject):
 
     @feet_frames_film_type.setter
     def feet_frames_film_type(self, value: int or str):
-        if type(value) == str:
+        if isinstance(value, str):
             value = feet_and_frames_dictionary[value]
         self._eval_on_object(f"feetFramesFilmType = {value}")
 
@@ -171,7 +171,7 @@ class Project(PydobeBaseObject):
 
     @footage_timecode_display_start_type.setter
     def footage_timecode_display_start_type(self, value: int):
-        if type(value) == str:
+        if isinstance(value, str):
             value = footage_start_time_dictionary[value]
         self._eval_on_object(f"footageTimecodeDisplayStartType = {value}")
 
@@ -186,7 +186,7 @@ class Project(PydobeBaseObject):
 
     @frames_count_type.setter
     def frames_count_type(self, value: int):
-        if type(value) == str:
+        if isinstance(value, str):
             value = frames_count_dictionary[value]
         self._eval_on_object(f"framesCountType = {value}")
 
@@ -211,7 +211,7 @@ class Project(PydobeBaseObject):
 
     @gpu_accel_type.setter
     def gpu_accel_type(self, value: int):
-        if type(value) == str:
+        if isinstance(value, str):
             value = gpu_accel_type_dictionary[value]
         if value not in pydobe.objects.app.available_gpu_accel_types:
             raise ValueError("This GPU Acceleration is not available")
@@ -295,7 +295,7 @@ class Project(PydobeBaseObject):
 
     @time_display_type.setter
     def time_display_type(self, value: int or str):
-        if type(value) == str:
+        if isinstance(value, str):
             value = time_display_dictionary[value]
         self._eval_on_object(f"timeDisplayType = {value}")
 
@@ -309,7 +309,7 @@ class Project(PydobeBaseObject):
 
     @tool_type.setter
     def tool_type(self, value: int or str):
-        if type(value) == str:
+        if isinstance(value, str):
             value = tool_dictionary[value]
         self._eval_on_object(f"toolType = {value}")
 
@@ -572,7 +572,7 @@ class Item(PydobeBaseObject):
 
     @label.setter
     def label(self, value: int or str):
-        if type(value) == int:
+        if isinstance(value, int):
             if value not in range(17):
                 raise ValueError("Cannot set label, value must be between 0 and 16")
             int_value = value
@@ -862,7 +862,7 @@ class CompItem(AVItem):
 
     @bg_color.setter
     def bg_color(self, value: list or str):
-        if type(value) == str:
+        if isinstance(value, str):
             value = hex_to_rgb(value)
         self._eval_on_object(f"bgColor = {value}")
 
@@ -1202,7 +1202,7 @@ class CompItem(AVItem):
             if not kwargs.get("pydobe_id"):
                 raise ValueError("The value for the relative index is out of range")
         else:
-            if type(layer) == str:
+            if isinstance(layer, str):
                 kwargs = self._eval_on_object(f'layer("{layer}")')
             else:
                 layer += 1
@@ -1405,7 +1405,7 @@ class FootageSource(PydobeBaseObject):
 
     @alpha_mode.setter
     def alpha_mode(self, value: str or int):
-        if type(value) == str:
+        if isinstance(value, str):
             value = alpha_dictionary[value]
         self._eval_on_object(f"alphaMode = {value}")
 
@@ -1435,7 +1435,7 @@ class FootageSource(PydobeBaseObject):
 
     @field_separation_type.setter
     def field_separation_type(self, value: int or str):
-        if type(value) == str:
+        if isinstance(value, str):
             value = field_separation_dictionary[value]
         self._eval_on_object(f"fieldSeparationType = {value}")
 
@@ -1497,7 +1497,7 @@ class FootageSource(PydobeBaseObject):
 
     @premul_color.setter
     def premul_color(self, value: list or str):
-        if type(value) == str:
+        if isinstance(value, str):
             value = hex_to_rgb(value)
         self._eval_on_object(f"premulColor = {value}")
 
@@ -1511,7 +1511,7 @@ class FootageSource(PydobeBaseObject):
 
     @remove_pulldown.setter
     def remove_pulldown(self, value: int or str):
-        if type(value) == str:
+        if isinstance(value, str):
             value = pulldown_dictionary[value]
         self._eval_on_object(f"removePulldown = {value}")
 
@@ -1569,7 +1569,7 @@ class SolidSource(FootageSource):
 
     @color.setter
     def color(self, value: list or str):
-        if type(value) == str:
+        if isinstance(value, str):
             value = hex_to_rgb(value)
         self._eval_on_object(f"color = {value}")
 
@@ -1681,11 +1681,10 @@ class Property(PropertyBase):
     # FUNCTIONS
 
     def set_value(self, value):
-        value_type = type(self.value)
-        if type(value) == value_type:
+        if isinstance(value, type(self.value)):
             self._eval_on_object(f'setValue ({value})')
         else:
-            raise ValueError(f"Unable to set '{self.name}', value must be of type '{value_type.__name__}'")
+            raise ValueError(f"Unable to set '{self.name}', value must be of type '{type(self.value).__name__}'")
 
 
 class PropertyGroup(PropertyBase):
@@ -1857,7 +1856,7 @@ class AVLayer(Layer):
 
     @blending_mode.setter
     def blending_mode(self, value: str or int):
-        if type(value) == str:
+        if isinstance(value, str):
             value = blending_modes_dictionary[value]
         self._eval_on_object(f'blendingMode = {value}')
 
@@ -1922,7 +1921,7 @@ class AVLayer(Layer):
 
     @frame_blending_type.setter
     def frame_blending_type(self, value: int or str):
-        if type(value) == str:
+        if isinstance(value, str):
             value = frame_blending_dictionary[value]
         self._eval_on_object(f"frameBlendingType = {value}")
 
@@ -2134,7 +2133,7 @@ class LayerCollection(PydobeBaseCollection):
             pixel_aspect: float,
     ) -> LightLayer:
         """Creates a new Solid layer"""
-        if type(color) == str:
+        if isinstance(color, str):
             color = hex_to_rgb(color)
         kwargs = self._eval_on_object(
             f'addSolid({color}, "{name}", {width}, {height}, {pixel_aspect})'
