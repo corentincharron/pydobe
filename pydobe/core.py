@@ -23,19 +23,19 @@ class PydobeBaseObject(object):
         return self._object_type
 
     def _eval_on_object(
-        self, extend_property: str = "", pydobe_id: str = None, index: int = None
+        self, extend_property: str = "", index: int = None
     ):
         """Query property or execute function on ExtendScript object"""
         if extend_property:
             extend_property = f".{extend_property}"
+
         if index:
             index = f"[{index}]"
         else:
             index = ""
-        if pydobe_id:
-            line = f"$._pydobe['{pydobe_id}']{index}{extend_property};"
-        else:
-            line = f"$._pydobe['{self.pydobe_id}']{index}{extend_property};"
+
+        line = f"$._pydobe['{self.pydobe_id}']{index}{extend_property};"
+
         result = eval_script_returning_object(line)
         return result
 
