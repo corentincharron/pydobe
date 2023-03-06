@@ -1,15 +1,16 @@
 from __future__ import annotations
 
-from pydobe.after_effects.data import label_dictionary
-from .source import FileSource, FootageSource
 from pydobe.core import PydobeBaseObject, format_to_extend, eval_script_returning_object, create_python_object, \
     PydobeBaseCollection
+from pydobe.utils import hex_to_rgb
+from pydobe.adobe_objects import File
+from pydobe.after_effects.utils import time_to_current_format, current_format_to_time
+from pydobe.after_effects.data import label_dictionary
+
+from .source import FileSource, FootageSource
 from .layer import CameraLayer, LayerCollection
 from .property import Property, PropertyGroup
 from .viewer import Viewer
-from ..ae_utils import time_to_current_format, current_format_to_time
-from ...adobe_objects import File
-from ...utils import hex_to_rgb
 
 
 class Item(PydobeBaseObject):

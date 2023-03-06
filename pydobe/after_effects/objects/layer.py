@@ -3,9 +3,9 @@ from typing import TYPE_CHECKING
 
 from pydobe.core import format_to_extend, create_python_object, PydobeBaseCollection
 from .property import Property, PropertyGroup
-from ..ae_utils import time_to_current_format
-from ..data import blending_modes_dictionary, frame_blending_dictionary
-from ...utils import hex_to_rgb
+from pydobe.after_effects.utils import time_to_current_format
+from pydobe.after_effects.data import blending_modes_dictionary, frame_blending_dictionary
+from pydobe.utils import hex_to_rgb
 
 if TYPE_CHECKING:
     from .item import CompItem, Item

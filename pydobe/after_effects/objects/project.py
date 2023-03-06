@@ -9,7 +9,7 @@ from pydobe.core import (
 from pydobe.adobe_objects import File, Folder
 from pydobe.logging_ import logger
 from pydobe.after_effects.data import *
-from pydobe.after_effects.ae_utils import *
+from pydobe.after_effects.utils import *
 from .render_queue import RenderQueue
 from .item import Item, FolderItem, FootageItem, ItemCollection
 from .import_options import ImportOptions
