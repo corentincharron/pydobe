@@ -16,9 +16,9 @@ class IntStringDict(UserDict):
         raise KeyError(key)
 
     def __setitem__(self, key, value):
-        if type(key).__name__ == "int":
+        if isinstance(key, int):
             self.data[key] = value
-        elif type(key).__name__ == "str":
+        elif isinstance(key, str):
             self.data[value] = key
 
 
