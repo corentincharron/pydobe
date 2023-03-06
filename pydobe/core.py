@@ -12,11 +12,15 @@ class PydobeBaseObject(object):
 
     def __init__(self, pydobe_id: str, object_type: str):
         self._pydobe_id = pydobe_id
-        self.object_type = object_type
+        self._object_type = object_type
 
     @property
     def pydobe_id(self):
         return self._pydobe_id
+
+    @property
+    def object_type(self):
+        return self._object_type
 
     def _eval_on_object(
         self, extend_property: str = "", pydobe_id: str = None, index: int = None
