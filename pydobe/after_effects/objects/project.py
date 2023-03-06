@@ -6,7 +6,8 @@ from pydobe.core import (
     format_to_extend,
     create_python_object,
 )
-from pydobe.adobe_objects import File, Folder
+from pydobe.shared.objects.folder import Folder
+from pydobe.shared.objects.file_ import File
 from pydobe.logging_ import logger
 from pydobe.after_effects.data import *
 from pydobe.after_effects.utils import *

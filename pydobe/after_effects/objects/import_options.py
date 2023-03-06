@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from pydobe.adobe_objects import File
+from pydobe.shared.objects.file_ import File
 from pydobe.core import PydobeBaseObject, format_to_extend
 
 
